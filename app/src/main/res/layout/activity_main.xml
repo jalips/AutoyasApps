@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="182dp"
-
         tools:layout="@layout/fragment_list" />
 
 </android.support.constraint.ConstraintLayout>
