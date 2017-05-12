@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.autoyas.app.autoyas.R;
 import  com.autoyas.app.autoyas.entities.User;
+import com.autoyas.app.autoyas.utils.Network;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,26 +48,32 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // Test for fake "admin" and "admin" password (after in db)
-                if (input_username.getText().toString().equals("admin") && input_password.getText().toString().equals("pass")) {
+                if(Network.isInternet(LoginActivity.this)) {
 
-                    // save password
-                    sharedPref.edit().putString("input_username", input_username.getText().toString()).apply();
-                    sharedPref.edit().putString("input_password", input_password.getText().toString()).apply();
+                    // Test for fake "admin" and "admin" password (after in db)
+                    if (input_username.getText().toString().equals("admin") && input_password.getText().toString().equals("pass")) {
 
-                    // Here create a fake user (or get him on db)
-                    User currentUser = new User();
-                    currentUser.setLogin("admin");
-                    currentUser.setPassword("pass");
+                        // save password
+                        sharedPref.edit().putString("input_username", input_username.getText().toString()).apply();
+                        sharedPref.edit().putString("input_password", input_password.getText().toString()).apply();
 
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        // Here create a fake user (or get him on db)
+                        User currentUser = new User();
+                        currentUser.setLogin("admin");
+                        currentUser.setPassword("pass");
 
-                } else if (input_username.getText().toString().equals("") || input_password.getText().toString().equals("")) {
-                    Toast toast = Toast.makeText(LoginActivity.this, "Empty credentials", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                else {
-                    Toast toast = Toast.makeText(LoginActivity.this, "Wrong credentials", Toast.LENGTH_SHORT);
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
+                    } else if (input_username.getText().toString().equals("") || input_password.getText().toString().equals("")) {
+                        Toast toast = Toast.makeText(LoginActivity.this, "Empty credentials", Toast.LENGTH_SHORT);
+                        toast.show();
+                    } else {
+                        Toast toast = Toast.makeText(LoginActivity.this, "Wrong credentials", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
+                } else {
+                    Toast toast = Toast.makeText(LoginActivity.this, "No internet connection", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.autoyas.app.autoyas.R;
+import com.autoyas.app.autoyas.utils.Network;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+            if(Network.isInternet(RegisterActivity.this)) {
+
                 if (input_email.getText().toString().equals("") || input_password.getText().toString().equals("")) {
 
                     Toast toast = Toast.makeText(RegisterActivity.this, "Wrong credentials", Toast.LENGTH_SHORT);
@@ -41,6 +44,11 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast toast = Toast.makeText(RegisterActivity.this, "Welcome, your registeration done !", Toast.LENGTH_SHORT);
                     toast.show();
                 }
+
+            } else {
+                Toast toast = Toast.makeText(RegisterActivity.this, "No internet connection", Toast.LENGTH_SHORT);
+                toast.show();
+            }
             }
         });
     }

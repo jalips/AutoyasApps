@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.autoyas.app.autoyas.R;
+import com.autoyas.app.autoyas.utils.Network;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
@@ -26,17 +27,24 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (input_email.getText().toString().equals("")) {
+                if(Network.isInternet(ForgotPasswordActivity.this)) {
 
-                    Toast toast = Toast.makeText(ForgotPasswordActivity.this, "Wrong credentials", Toast.LENGTH_SHORT);
-                    toast.show();
+                    if (input_email.getText().toString().equals("")) {
+
+                        Toast toast = Toast.makeText(ForgotPasswordActivity.this, "Wrong credentials", Toast.LENGTH_SHORT);
+                        toast.show();
+
+                    } else {
+                        // sent email for new password
+                        //
+                        //
+
+                        Toast toast = Toast.makeText(ForgotPasswordActivity.this, "Email sent : check your inbox", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
 
                 } else {
-                    // sent email for new password
-                    //
-                    //
-
-                    Toast toast = Toast.makeText(ForgotPasswordActivity.this, "Email sent : check your inbox", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(ForgotPasswordActivity.this, "No internet connection", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
