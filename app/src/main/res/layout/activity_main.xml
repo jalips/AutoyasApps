@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     tools:context="com.autoyas.app.autoyas.Controller.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <fragment
+        android:id="@+id/fragment_list"
+        android:name="com.autoyas.app.autoyas.Controller.ListView.ListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="182dp"
+
+        tools:layout="@layout/fragment_list" />
 
 </android.support.constraint.ConstraintLayout>
