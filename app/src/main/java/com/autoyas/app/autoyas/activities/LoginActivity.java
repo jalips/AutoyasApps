@@ -59,12 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                     currentUser.setLogin("admin");
                     currentUser.setPassword("pass");
 
-                    // save password here
-                    // ...
-                    // ...
-
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                } else {
+                } else if (input_username.getText().toString().equals("") || input_password.getText().toString().equals("")) {
+                    Toast toast = Toast.makeText(LoginActivity.this, "Empty credentials", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else {
                     Toast toast = Toast.makeText(LoginActivity.this, "Wrong credentials", Toast.LENGTH_SHORT);
                     toast.show();
                 }
