@@ -15,16 +15,12 @@ public class DeviceDAO {
      * @return List of articles
      */
     public static List<Device> findAllFake() {
-
-        List<Device> devices = new ArrayList<Device>();
-
+        List<Device> devices = new ArrayList<>();
         for(int i = 0; i < 10; i++){
             Device device = new Device();
             device.setName("Device n°"+i);
-
             devices.add(device);
         }
-
         return devices;
     }
 
