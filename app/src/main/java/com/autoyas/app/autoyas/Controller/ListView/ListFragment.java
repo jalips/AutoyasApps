@@ -2,37 +2,45 @@ package com.autoyas.app.autoyas.Controller.ListView;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.autoyas.app.autoyas.Controller.ListView.RecyclerAdapter.MainRecyclerAdapter;
+import com.autoyas.app.autoyas.Entity.DeviceDAO;
 import com.autoyas.app.autoyas.R;
-import com.autoyas.app.autoyas.Utils.Network;
 
 /**
  *
  */
 public class ListFragment extends Fragment {
 
+    private int numberOfArticle = 1;
+    private Toolbar toolbar;
+
+    private MainRecyclerAdapter adapter;
+
+    public MainRecyclerAdapter getAdapter() {
+        return adapter;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Creation for recycler view and it adapter
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.list_view);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.list_view);
 
         // Plug into adapter
-        ArticleDAO articleDAO = new ArticleDAO(this);
-        adapter = new MainRecyclerAdapter(this, articleDAO.findAll());
+        adapter = new MainRecyclerAdapter(this.getContext(), DeviceDAO.findAllFake());
         recyclerView.setAdapter(adapter);
 
         // Display grid manager with the right number
-        final GridLayoutManager manager = new GridLayoutManager(this, 1);
+        final GridLayoutManager manager = new GridLayoutManager(this.getContext(), 1);
         // Set the layout to recyclerView
         recyclerView.setLayoutManager(manager);
 
@@ -59,6 +67,7 @@ public class ListFragment extends Fragment {
         });
         */
 
+        return view;
     }
 
 }

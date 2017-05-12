@@ -8,6 +8,8 @@ public class Device {
 
     private String name;
 
+    public Device(){}
+
     public Device(String name) {
         this.name = name;
     }
