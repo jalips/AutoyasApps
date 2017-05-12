@@ -42,8 +42,13 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * @return
      */
     @Override
+    /*
     public int getItemCount() {
-        return listItems.size()+1;
+      return listItems.size()+1;
+    }
+    */
+    public int getItemCount() {
+        return listItems.size();
     }
 
     /**
@@ -90,8 +95,8 @@ public class MainRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof MainRecyclerAdapterItem) {
-            Device currentItem = getItem(position-1);
-            //Device currentItem = getItem(position);
+            //Device currentItem = getItem(position-1);
+            Device currentItem = getItem(position);
             MainRecyclerAdapterItem VHitem = (MainRecyclerAdapterItem)holder;
             VHitem.display(currentItem, context);
         }
