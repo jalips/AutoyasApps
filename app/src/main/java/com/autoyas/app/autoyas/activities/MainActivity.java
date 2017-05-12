@@ -19,7 +19,6 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.autoyas.app.autoyas.R;
-import com.github.mikephil.charting.charts.LineChart;
 
 public class MainActivity extends AppCompatActivity {
 
