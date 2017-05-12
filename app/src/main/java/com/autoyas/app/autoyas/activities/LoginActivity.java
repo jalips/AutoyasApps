@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     currentUser.setPassword("pass");
 
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
+
                 } else if (input_username.getText().toString().equals("") || input_password.getText().toString().equals("")) {
                     Toast toast = Toast.makeText(LoginActivity.this, "Empty credentials", Toast.LENGTH_SHORT);
                     toast.show();

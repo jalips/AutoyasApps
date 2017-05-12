@@ -1,11 +1,11 @@
-package com.autoyas.app.autoyas.Controller.ListView.RecyclerAdapter;
+package com.autoyas.app.autoyas.activities.listView.recyclerAdapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.autoyas.app.autoyas.Entity.Device;
+import com.autoyas.app.autoyas.entities.Device;
 import com.autoyas.app.autoyas.R;
 
 /**

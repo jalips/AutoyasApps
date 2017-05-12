@@ -1,4 +1,4 @@
-package com.autoyas.app.autoyas.Controller.ListView;
+package com.autoyas.app.autoyas.activities.listView;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.autoyas.app.autoyas.Controller.ListView.RecyclerAdapter.MainRecyclerAdapter;
-import com.autoyas.app.autoyas.Entity.DeviceDAO;
+import com.autoyas.app.autoyas.activities.listView.recyclerAdapter.MainRecyclerAdapter;
+import com.autoyas.app.autoyas.entities.DeviceDAO;
 import com.autoyas.app.autoyas.R;
 
 /**

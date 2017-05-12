@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/fragment_list"
-        android:name="com.autoyas.app.autoyas.Controller.ListView.ListFragment"
+        android:name="com.autoyas.app.autoyas.activities.listView.ListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="133dp"

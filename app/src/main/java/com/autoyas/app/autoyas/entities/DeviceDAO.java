@@ -1,4 +1,4 @@
-package com.autoyas.app.autoyas.Entity;
+package com.autoyas.app.autoyas.entities;
 
 import java.util.ArrayList;
 import java.util.List;

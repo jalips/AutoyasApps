@@ -1,4 +1,4 @@
-package com.autoyas.app.autoyas.Utils;
+package com.autoyas.app.autoyas.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
