@@ -60,7 +60,7 @@ public class AsyncGetStats extends AsyncTaskApiGet {
             List<Entry> entriesValve = new ArrayList<Entry>();
             List<Stat> stats = new ArrayList<Stat>();
             String statType = "Label";
-            for(int n = 0; n < array.length(); n++)
+            for(int n = 0; n < array.length()-1; n++)
             {
                 JSONObject object = array.getJSONObject(n);
                 Log.i("AsyncGetAuthGet", "OnPostExecute jObject : "+object.toString());
@@ -76,28 +76,22 @@ public class AsyncGetStats extends AsyncTaskApiGet {
 
                 stats.add(stat);
 
-                if(stat.equals("temp")){
-
+                if(stat.getStatisticType().equals("temp")){
                     entriesTemp.add(new Entry(n, stat.getData()));
-
-                }else if(stat.equals("hydro")){
-
+                }else if(stat.getStatisticType().equals("hydro")){
                     entriesHydro.add(new Entry(n, stat.getData()));
-
-                }else if(stat.equals("valve")) {
-
+                }else if(stat.getStatisticType().equals("valve")) {
                     entriesValve.add(new Entry(n, stat.getData()));
-
                 }
 
             }
-
 
             // add entries to dataset
             LineDataSet dataSetTemp = new LineDataSet(entriesTemp, "temp");
             LineDataSet dataSetHydro = new LineDataSet(entriesHydro, "hydro");
             LineDataSet dataSetValve = new LineDataSet(entriesValve, "valve");
-            //dataSet.setColor(...);
+            dataSetHydro.setColor(R.color.green);
+            dataSetValve.setColor(R.color.red);
             //dataSet.setValueTextColor(...);
 
             // use the interface ILineDataSet
