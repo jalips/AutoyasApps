@@ -13,6 +13,7 @@ import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,30 +55,58 @@ public class AsyncGetStats extends AsyncTaskApiGet {
             //progress.setVisibility(View.GONE);
 
             JSONArray array = new JSONArray(result);
-            List<Entry> entries = new ArrayList<Entry>();
+            List<Entry> entriesTemp = new ArrayList<Entry>();
+            List<Entry> entriesHydro = new ArrayList<Entry>();
+            List<Entry> entriesValve = new ArrayList<Entry>();
+            List<Stat> stats = new ArrayList<Stat>();
             String statType = "Label";
             for(int n = 0; n < array.length(); n++)
             {
                 JSONObject object = array.getJSONObject(n);
                 Log.i("AsyncGetAuthGet", "OnPostExecute jObject : "+object.toString());
 
+                JSONObject statistic_type = object.getJSONObject("statistic_type");
+                statType = statistic_type.getString("name");
+
                 Stat stat = new Stat();
                 stat.setId(object.getInt("id"));
                 stat.setData(object.getInt("data"));
                 stat.setCreatedAt(object.getString("created_at"));
+                stat.setStatisticType(statType);
 
-                entries.add(new Entry(n, stat.getData()));
+                stats.add(stat);
 
-                JSONObject statistic_type = object.getJSONObject("statistic_type");
-                statType = statistic_type.getString("name");
+                if(stat.equals("temp")){
+
+                    entriesTemp.add(new Entry(n, stat.getData()));
+
+                }else if(stat.equals("hydro")){
+
+                    entriesHydro.add(new Entry(n, stat.getData()));
+
+                }else if(stat.equals("valve")) {
+
+                    entriesValve.add(new Entry(n, stat.getData()));
+
+                }
+
             }
 
+
             // add entries to dataset
-            LineDataSet dataSet = new LineDataSet(entries, statType);
+            LineDataSet dataSetTemp = new LineDataSet(entriesTemp, "temp");
+            LineDataSet dataSetHydro = new LineDataSet(entriesHydro, "hydro");
+            LineDataSet dataSetValve = new LineDataSet(entriesValve, "valve");
             //dataSet.setColor(...);
             //dataSet.setValueTextColor(...);
 
-            LineData lineData = new LineData(dataSet);
+            // use the interface ILineDataSet
+            List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+            dataSets.add(dataSetTemp);
+            dataSets.add(dataSetHydro);
+            dataSets.add(dataSetValve);
+
+            LineData lineData = new LineData(dataSets);
             chart.setData(lineData);
             // refresh
             chart.invalidate();
