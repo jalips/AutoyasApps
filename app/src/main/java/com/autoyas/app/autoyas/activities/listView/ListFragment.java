@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.autoyas.app.autoyas.activities.listView.recyclerAdapter.MainRecyclerAdapter;
 import com.autoyas.app.autoyas.entities.DeviceDAO;
 import com.autoyas.app.autoyas.R;
+import com.autoyas.app.autoyas.utils.asyncTaskManager.AsyncGetDeviceGet;
 
 /**
  *
@@ -36,36 +37,17 @@ public class ListFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.list_view);
 
         // Plug into adapter
-        adapter = new MainRecyclerAdapter(this.getContext(), DeviceDAO.findAllFake());
+        adapter = new MainRecyclerAdapter(this.getContext(), DeviceDAO.findNone());
         recyclerView.setAdapter(adapter);
+
+        // Call api to get devices
+        AsyncGetDeviceGet asyncGetDevice = new AsyncGetDeviceGet(this.getContext(), view, 1, adapter);
+        asyncGetDevice.execute();
 
         // Display grid manager with the right number
         final GridLayoutManager manager = new GridLayoutManager(this.getContext(), 1);
         // Set the layout to recyclerView
         recyclerView.setLayoutManager(manager);
-
-        // Bind action for swipe
-        /*
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if(Network.isInternet(MainActivity.this)) {
-                    // Call API to update pdf
-                    ManagePdf managePdf = new ManagePdf(MainActivity.this);
-                    managePdf.setmSwipeRefreshLayout(mSwipeRefreshLayout);
-                    managePdf.setProgress(adapter);
-                    managePdf.handlingInit();
-                }else{
-                    mSwipeRefreshLayout.setRefreshing(false);
-
-                    // Display some toast
-                    Toast toast = Toast.makeText(MainActivity.this, "Connection internet requise.", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                    toast.show();
-                }
-            }
-        });
-        */
 
         return view;
     }

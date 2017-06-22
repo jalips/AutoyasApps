@@ -36,11 +36,11 @@ public class MainRecyclerAdapterItem extends RecyclerView.ViewHolder{
 
     /**
      * Bind view param to actual article data
-     * @param article
+     * @param device
      */
-    public void display(Device article, Context context) {
-        currentPair = article;
-        text_device_info.setText(article.getName());
+    public void display(Device device, Context context) {
+        currentPair = device;
+        text_device_info.setText(device.getMacAdress());
 
         //String file = context.getFilesDir().getPath() + File.separator + article.getImg_name();
         //image.setImageURI(Uri.parse(file));

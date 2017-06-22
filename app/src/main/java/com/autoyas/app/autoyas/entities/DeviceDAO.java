@@ -24,4 +24,9 @@ public class DeviceDAO {
         return devices;
     }
 
+    public static List<Device> findNone() {
+        List<Device> devices = new ArrayList<>();
+        return devices;
+    }
+
 }

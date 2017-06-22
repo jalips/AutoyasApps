@@ -9,10 +9,7 @@ import com.autoyas.app.autoyas.BuildConfig;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -21,11 +18,10 @@ import javax.net.ssl.HttpsURLConnection;
 /**
  * Manager for API Call
  */
-public class AsyncTaskApi extends AsyncTask<Integer, Void, String> {
+public class AsyncTaskApiGet extends AsyncTask<Integer, Void, String> {
 
+    protected String apiMethod;
     protected String apiUrl;
-    protected String bd;
-    protected String we;
     protected String action;
     protected Context context;
     protected JSONObject postDataParams;
@@ -40,10 +36,8 @@ public class AsyncTaskApi extends AsyncTask<Integer, Void, String> {
         String returnString = "";
 
         if(BuildConfig.DEBUG) {
-            Log.i("AsyncTaskApi",
+            Log.i("AsyncTaskApiGet",
                     "Connection to : "+apiUrl+
-                            " bd : "+bd+
-                            " we : "+we+
                             " json : "+action);
         }
 
@@ -55,24 +49,14 @@ public class AsyncTaskApi extends AsyncTask<Integer, Void, String> {
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(15000 /* milliseconds */);
             conn.setConnectTimeout(15000 /* milliseconds */);
-            conn.setRequestMethod("POST");
-            conn.setDoInput(true);
-            conn.setDoOutput(true);
-
-            // Create and get OutputStream
-            OutputStream os = conn.getOutputStream();
-            BufferedWriter writer = new BufferedWriter( new OutputStreamWriter(os, "UTF-8"));
-            writer.write((this.postDataParams.toString()));
-            writer.flush();
-            writer.close();
-            os.close();
+            conn.setRequestMethod(apiMethod);
 
             // Get the response
             int responseCode = conn.getResponseCode();
             if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 if(BuildConfig.DEBUG) {
-                    Log.i("AsyncTaskApi", "Return http OK ");
+                    Log.i("AsyncTaskApiGet", "Return http OK ");
                 }
 
                 BufferedReader in = new BufferedReader( new InputStreamReader( conn.getInputStream()));
@@ -89,7 +73,7 @@ public class AsyncTaskApi extends AsyncTask<Integer, Void, String> {
 
             } else {
                 if(BuildConfig.DEBUG) {
-                    Log.i("AsyncTaskApi", "Return http NOK ");
+                    Log.i("AsyncTaskApiGet", "Return http NOK " + responseCode + " not : "+ HttpsURLConnection.HTTP_OK);
                 }
 
                 // Return error if not
@@ -97,7 +81,7 @@ public class AsyncTaskApi extends AsyncTask<Integer, Void, String> {
             }
         }
         catch(Exception e) {
-            Log.e("AsyncTaskApi", "ERROR :: "+e.getMessage(), e);
+            Log.e("AsyncTaskApiGet", "ERROR :: "+e.getMessage(), e);
         }
         return returnString;
     }

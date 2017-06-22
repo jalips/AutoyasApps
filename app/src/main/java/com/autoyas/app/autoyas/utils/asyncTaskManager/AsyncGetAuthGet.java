@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.autoyas.app.autoyas.BuildConfig;
@@ -20,7 +19,7 @@ import org.json.JSONObject;
  * And write sharedPrefs if it's good
  * And display a message on login page if it's not
  */
-public class AsyncGetAuth extends AsyncTaskApi {
+public class AsyncGetAuthGet extends AsyncTaskApiGet {
 
     private View rootView;
 
@@ -31,7 +30,7 @@ public class AsyncGetAuth extends AsyncTaskApi {
      * @param login User login
      * @param password User password
      */
-    public AsyncGetAuth(Context context, View rootView, String login, String password) {
+    public AsyncGetAuthGet(Context context, View rootView, String login, String password) {
         this.context = context;
         this.rootView = rootView;
 
@@ -62,8 +61,8 @@ public class AsyncGetAuth extends AsyncTaskApi {
             JSONObject myData = jObject.getJSONObject("data");
 
             if(BuildConfig.DEBUG) {
-                Log.i("AsyncGetAuth", "OnPostExecute jObject : "+jObject.toString());
-                Log.i("AsyncGetAuth", "OnPostExecute myData : "+myData.toString());
+                Log.i("AsyncGetAuthGet", "OnPostExecute jObject : "+jObject.toString());
+                Log.i("AsyncGetAuthGet", "OnPostExecute myData : "+myData.toString());
             }
 
             // Return true if is an update
