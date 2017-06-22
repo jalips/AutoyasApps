@@ -7,15 +7,10 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.Toast;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.DiskBasedCache;
-import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.autoyas.app.autoyas.R;
@@ -29,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         //makeDialog();
 
-        callNetwork();
+        //callNetwork();
     }
 
     private void makeDialog(){
