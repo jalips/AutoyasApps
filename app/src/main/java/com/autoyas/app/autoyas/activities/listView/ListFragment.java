@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.autoyas.app.autoyas.activities.listView.recyclerAdapter.MainRecyclerAdapter;
 import com.autoyas.app.autoyas.entities.DeviceDAO;
 import com.autoyas.app.autoyas.R;
-import com.autoyas.app.autoyas.utils.asyncTaskManager.AsyncGetDeviceGet;
+import com.autoyas.app.autoyas.utils.asyncTaskManager.asyncTasks.AsyncGetDeviceGet;
 
 /**
  *

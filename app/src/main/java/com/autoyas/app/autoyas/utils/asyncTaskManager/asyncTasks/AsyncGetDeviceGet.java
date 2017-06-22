@@ -1,4 +1,4 @@
-package com.autoyas.app.autoyas.utils.asyncTaskManager;
+package com.autoyas.app.autoyas.utils.asyncTaskManager.asyncTasks;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,7 @@ import android.view.View;
 import com.autoyas.app.autoyas.R;
 import com.autoyas.app.autoyas.activities.listView.recyclerAdapter.MainRecyclerAdapter;
 import com.autoyas.app.autoyas.entities.Device;
+import com.autoyas.app.autoyas.utils.asyncTaskManager.AsyncTaskApiGet;
 
 import org.json.JSONArray;
 import org.json.JSONException;

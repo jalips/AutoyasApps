@@ -1,4 +1,4 @@
-package com.autoyas.app.autoyas.utils.asyncTaskManager;
+package com.autoyas.app.autoyas.utils.asyncTaskManager.asyncTasks;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.autoyas.app.autoyas.BuildConfig;
 import com.autoyas.app.autoyas.R;
 import com.autoyas.app.autoyas.activities.MainActivity;
+import com.autoyas.app.autoyas.utils.asyncTaskManager.AsyncTaskApiGet;
 
 import org.json.JSONException;
 import org.json.JSONObject;

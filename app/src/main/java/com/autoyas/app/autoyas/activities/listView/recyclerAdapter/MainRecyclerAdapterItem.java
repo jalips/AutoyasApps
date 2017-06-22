@@ -1,10 +1,15 @@
 package com.autoyas.app.autoyas.activities.listView.recyclerAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.autoyas.app.autoyas.activities.ChartActivity;
+import com.autoyas.app.autoyas.activities.LoginActivity;
+import com.autoyas.app.autoyas.activities.MainActivity;
+import com.autoyas.app.autoyas.activities.listView.ListFragment;
 import com.autoyas.app.autoyas.entities.Device;
 import com.autoyas.app.autoyas.R;
 
@@ -24,12 +29,10 @@ public class MainRecyclerAdapterItem extends RecyclerView.ViewHolder{
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                // Display some toast
-                Toast toast = Toast.makeText(MainActivity.this, "Connection internet requise.", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-                toast.show();
-                */
+
+                Intent intent = new Intent(view.getContext(), ChartActivity.class);
+                intent.putExtra("device_id", currentPair.getId());
+                view.getContext().startActivity(intent);
             }
         });
     }
@@ -41,8 +44,5 @@ public class MainRecyclerAdapterItem extends RecyclerView.ViewHolder{
     public void display(Device device, Context context) {
         currentPair = device;
         text_device_info.setText(device.getMacAdress());
-
-        //String file = context.getFilesDir().getPath() + File.separator + article.getImg_name();
-        //image.setImageURI(Uri.parse(file));
     }
 }
