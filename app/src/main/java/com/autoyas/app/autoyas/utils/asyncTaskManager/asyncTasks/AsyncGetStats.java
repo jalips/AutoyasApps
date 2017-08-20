@@ -54,7 +54,10 @@ public class AsyncGetStats extends AsyncTaskApiGet {
             //final ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.progress);
             //progress.setVisibility(View.GONE);
 
-            JSONArray array = new JSONArray(result);
+            JSONObject jObject = new JSONObject(result);
+            JSONArray array = jObject.getJSONArray("Statistics");
+
+            //JSONArray array = new JSONArray(result);
             List<Entry> entriesTemp = new ArrayList<Entry>();
             List<Entry> entriesHydro = new ArrayList<Entry>();
             List<Entry> entriesValve = new ArrayList<Entry>();

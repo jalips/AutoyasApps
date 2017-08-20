@@ -48,7 +48,10 @@ public class AsyncGetDeviceGet extends AsyncTaskApiGet {
             //final ProgressBar progress = (ProgressBar) rootView.findViewById(R.id.progress);
             //progress.setVisibility(View.GONE);
 
-            JSONArray array = new JSONArray(result);
+            JSONObject jObject = new JSONObject(result);
+            JSONArray array = jObject.getJSONArray("Devices");
+
+            //JSONArray array = new JSONArray(result);
             List<Device> devices = new ArrayList<>();
             for(int n = 0; n < array.length(); n++)
             {
